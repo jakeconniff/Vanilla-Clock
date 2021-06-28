@@ -1,13 +1,33 @@
 const hourTimer = document.querySelector("#hour")
 const minuteTimer = document.querySelector("#minute")
 const secondTimer = document.querySelector("#second")
+var toggleMode = true
 
-function timeUpdate(){
-    const timing = new Date()
-    hourTimer.innerHTML = timing.getHours()
-    minuteTimer.innerHTML = timing.getMinutes()
-    secondTimer.innerHTML = timing.getSeconds()
+function timeUpdate24(){
+    let timing = new Date()
+    secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
+    minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
+    hourTimer.innerHTML = (timing.getHours()<10) ? "0" + timing.getHours() : timing.getHours()
+    console.log('24-hour mode')
 }
 
-const updating = setInterval(timeUpdate, 1000)
+function timeUpdate12(){
+    let timing = new Date()
+    var hours = timing.getHours()
+    if(hours === 0)hours = 12
+    else if(hours > 12) hours -= 12
 
+    hourTimer.innerHTML = (hours<10) ? "0" + hours : hours
+    secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
+    minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
+    console.log('12-hour mode')
+}
+
+var updating = setInterval(timeUpdate24, 1000)
+
+function switchTimes(){
+    clearInterval(updating)
+    toggleMode = !toggleMode
+    console.log("mode: " + toggleMode)
+    updating = toggleMode ? setInterval(timeUpdate24, 1000) : setInterval(timeUpdate12, 1000)    
+}
