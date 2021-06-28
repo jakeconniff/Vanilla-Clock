@@ -1,0 +1,17 @@
+body{
+    text-align:center;
+    background-color:rgb(0, 174, 255);
+    color:white;
+}
+
+.descriptor{
+    color:rgb(177, 177, 177);
+    font-size:small;
+}
+
+#clock{
+    font-size:100px;
+    display:block;
+    margin:40px;
+    font-family:monospace;
+}
