@@ -5,10 +5,11 @@ var toggleMode = true
 
 function timeUpdate24(){
     let timing = new Date()
+
+    //Simple 24-hour formatting for the clock timing
     secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
     minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
     hourTimer.innerHTML = (timing.getHours()<10) ? "0" + timing.getHours() : timing.getHours()
-    console.log('24-hour mode')
 }
 
 function timeUpdate12(){
@@ -20,7 +21,6 @@ function timeUpdate12(){
     hourTimer.innerHTML = (hours<10) ? "0" + hours : hours
     secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
     minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
-    console.log('12-hour mode')
 }
 
 var updating = setInterval(timeUpdate24, 1000)
