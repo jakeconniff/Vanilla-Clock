@@ -21,13 +21,26 @@ function timeUpdate12(){
     hourTimer.innerHTML = (hours<10) ? "0" + hours : hours
     secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
     minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
+
+    if(timing.getHours()>11) secondTimer.innerHTML += 'pm'
+    else secondTimer.innerHTML += 'am'
 }
 
+timeUpdate24()
 var updating = setInterval(timeUpdate24, 1000)
 
 function switchTimes(){
     clearInterval(updating)
     toggleMode = !toggleMode
-    console.log("mode: " + toggleMode)
+
+    if(toggleMode){
+        timeUpdate24()
+        console.log('Mode: 24-hour')
+    }
+    else {
+        timeUpdate12()
+        console.log('Mode: 24-hour')
+    }
+
     updating = toggleMode ? setInterval(timeUpdate24, 1000) : setInterval(timeUpdate12, 1000)    
 }
