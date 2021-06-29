@@ -30,4 +30,14 @@ button{
     border-radius: 40px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 15px;
+    transition-duration:0.4s;
+}
+
+button:hover{
+    border-width: 6px;
+}
+
+button:active{
+    color:rgb(0,109,128);
+    background-color:white;
 }
