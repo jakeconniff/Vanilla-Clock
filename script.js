@@ -3,9 +3,28 @@ const minuteTimer = document.querySelector("#minute")
 const secondTimer = document.querySelector("#second")
 var toggleMode = true
 
+//api access with OpenWeatherMap, geolocation for local weather
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(position=>{
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
+        
+        const key = '244c80ce16b21783f5b9730bd651493f'
+        const apiUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&cnt=10&appid=${key}`
+
+        fetch(apiUrl).then(response=>{
+            response.json().then(data=>{
+                let sunrise = data.sys.sunrise * 1000
+                riseTime = new Date(sunrise)
+
+                console.log(riseTime)
+            })
+        })
+    }, console.log)
+}
 function timeUpdate24(){
     let timing = new Date()
-
+    
     //Simple 24-hour formatting for the clock timing
     secondTimer.innerHTML = (timing.getSeconds()<10) ? "0" + timing.getSeconds() : timing.getSeconds()
     minuteTimer.innerHTML = (timing.getMinutes()<10) ? "0" + timing.getMinutes() : timing.getMinutes()
