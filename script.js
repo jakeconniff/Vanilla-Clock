@@ -62,7 +62,7 @@ function timeUpdate12(){
     if(timing === midnightToday)dayReset()
     let currentTime = timing.getTime()
     backgroundSet(currentTime)
-    
+
     var hours = timing.getHours()
     if(hours === 0)hours = 12
     else if(hours > 12) hours -= 12
@@ -82,23 +82,23 @@ function backgroundSet(currentTime){
         if(currentTime >= sunsetTime){
             let timeDiff = (currentTime - sunsetTime)/hours
             if(timeDiff >2){
-                bodyStyle.background = "purple"
-                buttonStyle.background = "purple"
+                bodyStyle.background = "rgb(26, 1, 73)" //purple
+                buttonStyle.background = "rgb(26, 1, 73)"
             }
             else if(timeDiff > 1){
-                bodyStyle.background = "red"
-                buttonStyle.background = "red"
+                bodyStyle.background = "rgb(104, 1, 1)"     //red
+                buttonStyle.background = "rgb(104, 1, 1)"
             }
             else{
-                bodyStyle.background = "orange"
-                buttonStyle.background = "orange"
+                bodyStyle.background = "rgb(238, 96, 1)"     //orange
+                buttonStyle.background = "rgb(238, 96, 1)"
             }
         }
         else{
             let timeDiff = (sunsetTime - currentTime)/hours
             if(timeDiff <= 1 || timeDiff == 0){
-                bodyStyle.background = "yellow"
-                buttonStyle.background = "yellow"
+                bodyStyle.background = "rgb(255, 208, 0)"     //yellow
+                buttonStyle.background = "rgb(255, 208, 0)"
             }
         }
     }
@@ -107,19 +107,23 @@ function backgroundSet(currentTime){
         if(currentTime <= sunriseTime){
             let timeDiff = (sunriseTime - currentTime)/hours
             if(timeDiff <= 2){
-                bodyStyle.background = "red"
-                buttonStyle.background = "red"
+                bodyStyle.background = "rgb(104, 1, 1)"     //red
+                buttonStyle.background = "rgb(104, 1, 1)"
             }
             if(timeDiff <= 1){
-                bodyStyle.background = "orange"
-                buttonStyle.background = "orange"
+                bodyStyle.background = "rgb(238, 96, 1)"    //orange
+                buttonStyle.background = "rgb(238, 96, 1)"
             }
         }
         else{
             let timeDiff = (currentTime - sunriseTime)/hours
             if(timeDiff > 1){
-                bodyStyle.background = "rgb(0, 109, 128)"
+                bodyStyle.background = "rgb(0, 109, 128)"     //blue
                 buttonStyle.background = "rgb(0, 109, 128)"
+            }
+            else{
+                bodyStyle.background = "rgb(255, 208, 0)"     //yellow
+                buttonStyle.background = "rgb(255, 208, 0)"
             }
         }
     }
@@ -136,13 +140,13 @@ function switchTimes(){
     }
     else {
         timeUpdate12()
-        console.log('Mode: 24-hour')
+        console.log('Mode: 12-hour')
     }
 
     updating = toggleMode ? setInterval(timeUpdate24, 1000) : setInterval(timeUpdate12, 1000)    
 }
 
-//dayReset()
-// bodyStyle.background = "purple"
-timeUpdate24()
+dayReset()
+let day = new Date()
+timeUpdate24() 
 var updating = setInterval(timeUpdate24, 1000)
