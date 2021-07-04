@@ -35,8 +35,14 @@ function dayReset(){
     
             fetch(apiUrl).then(response=>{
                 response.json().then(data=>{
-                    sunriseTime = data.sys.sunrise
-                    sunsetTime = data.sys.sunset
+                    sunriseTime = data.sys.sunrise * 1000
+                    sunsetTime = data.sys.sunset * 1000
+                    let sunrise = new Date(sunriseTime)
+                    let sunset = new Date(sunsetTime)
+
+                    console.log(`Sunrise: ${sunrise}`)
+                    console.log(`Sunset: ${sunset}`)
+                    
                 })
             })
         }, console.log)
@@ -78,7 +84,7 @@ function timeUpdate12(){
 //determining clock background color
 function backgroundSet(currentTime){
     //sunset colors
-    if(currentTime > noonToday) {
+    if(currentTime > noonToday) { 
         if(currentTime >= sunsetTime){
             let timeDiff = (currentTime - sunsetTime)/hours
             if(timeDiff >2){
@@ -100,6 +106,10 @@ function backgroundSet(currentTime){
                 bodyStyle.background = "rgb(255, 208, 0)"     //yellow
                 buttonStyle.background = "rgb(255, 208, 0)"
             }
+            else{
+                bodyStyle.background = "rgb(0, 109, 128)"     //blue
+                buttonStyle.background = "rgb(0, 109, 128)"
+            }
         }
     }
     //sunrise colors
@@ -107,12 +117,17 @@ function backgroundSet(currentTime){
         if(currentTime <= sunriseTime){
             let timeDiff = (sunriseTime - currentTime)/hours
             if(timeDiff <= 2){
+                position = late
                 bodyStyle.background = "rgb(104, 1, 1)"     //red
                 buttonStyle.background = "rgb(104, 1, 1)"
             }
-            if(timeDiff <= 1){
+            else if(timeDiff <= 1 || timeDiff == 0){
                 bodyStyle.background = "rgb(238, 96, 1)"    //orange
                 buttonStyle.background = "rgb(238, 96, 1)"
+            }
+            else{
+                bodyStyle.background = "rgb(26, 1, 73)" //purple
+                buttonStyle.background = "rgb(26, 1, 73)"
             }
         }
         else{
@@ -121,7 +136,7 @@ function backgroundSet(currentTime){
                 bodyStyle.background = "rgb(0, 109, 128)"     //blue
                 buttonStyle.background = "rgb(0, 109, 128)"
             }
-            else{
+            else {
                 bodyStyle.background = "rgb(255, 208, 0)"     //yellow
                 buttonStyle.background = "rgb(255, 208, 0)"
             }
