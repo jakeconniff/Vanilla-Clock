@@ -9,11 +9,6 @@ h1{
     font-family:'Courier New', Courier, monospace;
 }
 
-.descriptor{
-    color:rgb(177, 177, 177);
-    font-size:small;
-}
-
 #clock{
     font-size:100px;
     display:block;
