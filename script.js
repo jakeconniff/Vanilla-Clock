@@ -11,6 +11,7 @@ var noonToday
 var midnightToday
 var sunriseTime
 var sunsetTime
+var updating
 var toggleMode = true
 
 //setting all the clock timings for the current day
@@ -161,7 +162,7 @@ function switchTimes(){
     updating = toggleMode ? setInterval(timeUpdate24, 1000) : setInterval(timeUpdate12, 1000)    
 }
 
-dayReset()
-let day = new Date()
-timeUpdate24() 
-var updating = setInterval(timeUpdate24, 1000)
+window.onload = ()=>{
+    dayReset()
+    updating = setInterval(timeUpdate24, 1000)
+}
